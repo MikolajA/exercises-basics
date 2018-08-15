@@ -10,12 +10,26 @@ public class Main {
         int value1 = scanner.nextInt();
         int value2 = scanner.nextInt();
 
-        int result = sum(value1, value2);
+        int result = sum2(value1, value2);
         System.out.println("Wynik: " +result);
     }
+
+    // 1/2
 
     public static int sum(int a, int b) {
 
         return a * b;
+    }
+
+    // 3
+
+    public static int sum2(int a, int b) {
+
+        int result = 0;
+
+        for (int i = 1; i <= b; i++) {
+            result = result + a;
+        }
+        return result;
     }
 }
