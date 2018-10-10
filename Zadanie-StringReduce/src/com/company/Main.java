@@ -17,7 +17,7 @@ public class Main {
         for(int c=97; c<=122; c++){
             alfabet = sb.append((char) c).toString();
         }
-       
+
         for(int i =0; i<enter1.length(); i++){
             for(int j=0; j<alfabet.length(); j++){
                 if((enter1.charAt(i))==alfabet.charAt(j)){
