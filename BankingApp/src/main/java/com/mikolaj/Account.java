@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Account {
 
-    String name;
-    String lastName;
-    Integer number;
-    double initialAmmount;
-    String currency;
+    private String name;
+    private String lastName;
+    private Integer number;
+    private double initialAmmount;
+    private String currency;
 
     public Account(String name, String lastName, Integer number, double initialAmmount, String currency) {
         this.name = name;

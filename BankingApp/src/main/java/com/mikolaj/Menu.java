@@ -6,6 +6,8 @@ public class Menu {
 
     public static void showMenu() {
 
+        Operations op = new Operations();
+
         char option = 'o';
 
         Scanner sc = new Scanner(System.in);
@@ -40,16 +42,23 @@ public class Menu {
                     System.out.println("Please enter currency: ");
                     Scanner sc2 = new Scanner(System.in);
                     String currency = sc2.nextLine();
-                    Operations aA = new Operations();
-                    aA.Add(name, lastName, initialAmount, currency);
-                    Integer number = aA.accounts.size();
+                    op.Add(name, lastName, initialAmount, currency);
+                    Integer number = op.accounts.size();
                     System.out.println("Your account number is: " + number);
                     break;
 
                 case 'B':
+                    Scanner sc3 = new Scanner(System.in);
+                    System.out.println("----------------------");
+                    System.out.println("Please enter your account number");
+                    Integer number1 = sc3.nextInt();
+                    op.showAccountByNumber(number1);
+
+                    break;
+
+                case 'C':
                     System.out.println("---------------------");
                     System.out.println("Below you can see all accounts: ");
-                    Operations op = new Operations();
                     op.showAll();
                     System.out.println("---------------------");
                     break;
