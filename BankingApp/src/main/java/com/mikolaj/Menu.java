@@ -1,5 +1,6 @@
 package com.mikolaj;
 
+import java.net.Inet4Address;
 import java.util.Scanner;
 
 public class Menu {
@@ -41,7 +42,7 @@ public class Menu {
                     double initialAmount = sc1.nextDouble();
                     System.out.println("Please enter currency: ");
                     Scanner sc2 = new Scanner(System.in);
-                    String currency = sc2.nextLine();
+                    String currency = sc2.nextLine().toUpperCase();
                     op.Add(name, lastName, initialAmount, currency);
                     Integer number = op.accounts.size();
                     System.out.println("Your account number is: " + number);
@@ -50,16 +51,30 @@ public class Menu {
                 case 'B':
                     Scanner sc3 = new Scanner(System.in);
                     System.out.println("----------------------");
-                    System.out.println("Please enter your account number");
+                    System.out.println("Please enter your account number: ");
                     Integer number1 = sc3.nextInt();
                     op.showAccountByNumber(number1);
-
                     break;
 
                 case 'C':
                     System.out.println("---------------------");
                     System.out.println("Below you can see all accounts: ");
                     op.showAll();
+                    System.out.println("---------------------");
+                    break;
+
+                case 'D':
+                    System.out.println("---------------------");
+                    System.out.println("Please enter an account number which you want to make transaction from:");
+                    Scanner sc4 = new Scanner(System.in);
+                    Integer acNumber1 = sc4.nextInt();
+                    System.out.println("Please enter an account number which you want to make transaction to:");
+                    Integer acNumber2 = sc4.nextInt();
+                    System.out.println("Please enter an ammount:");
+                    Double ammount = sc4.nextDouble();
+                    op.makeTransaction(acNumber1, acNumber2, ammount);
+                    System.out.println("---------------------");
+                    System.out.println("Transaction has been done");
                     System.out.println("---------------------");
                     break;
 
