@@ -1,8 +1,5 @@
 package com.mikolaj;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Account {
 
     private String name;

@@ -1,5 +1,7 @@
 package com.mikolaj;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -36,8 +38,8 @@ public class Menu {
                     String name = readStringFromUser();
                     System.out.println("Please enter your last name: ");
                     String lastName = readStringFromUser();
-                    System.out.println("Please enter currency: ");
-                    String currency = readStringFromUser().toUpperCase();
+                    System.out.println("Please enter currency (PLN, USD, EUR): ");
+                    String currency = readCurrencyFroUser();
                     System.out.println("Please enter your initial amount: ");
                     Double initialAmount = readDoubleFromUser();
                     op.Add(name, lastName, initialAmount, currency);
@@ -141,6 +143,27 @@ public class Menu {
                 }
             } catch (Exception e) {
                 System.out.print("Something went wrong, please try again!");
+            }
+        }
+        return input;
+    }
+
+    public static String readCurrencyFroUser() {
+
+        Scanner scanner = new Scanner(System.in);
+        String input = null;
+
+        List<String> options = new ArrayList<>();
+        options.add("PLN");
+        options.add("USD");
+        options.add("EUR");
+
+        while (true) {
+            input = scanner.nextLine();
+            if (options.contains(input.toUpperCase())) {
+                break;
+            } else {
+                System.out.println("Please select one of the following currency: PLN, USD, EUR");
             }
         }
         return input;

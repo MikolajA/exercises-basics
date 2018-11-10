@@ -29,8 +29,8 @@ public class Operations {
                 System.out.println("---------------------");
                 System.out.println(account);
             }
-            if (number<=0 || number>accounts.size()) {
-                System.out.println("Something went wrong, please try again!");
+            if (number <= 0 || number > accounts.size()) {
+                System.out.println("Oops, something went wrong, please try again!");
             }
         }
     }
@@ -47,6 +47,6 @@ public class Operations {
                 double x = account.getInitialAmmount() + ammount;
                 account.setInitialAmmount(x);
             }
+        }
     }
-}
 }
