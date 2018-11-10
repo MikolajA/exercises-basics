@@ -8,10 +8,10 @@ public class Account {
     private String name;
     private String lastName;
     private Integer number;
-    private double initialAmmount;
+    private Double initialAmmount;
     private String currency;
 
-    public Account(String name, String lastName, Integer number, double initialAmmount, String currency) {
+    public Account(String name, String lastName, Integer number, Double initialAmmount, String currency) {
         this.name = name;
         this.lastName = lastName;
         this.number = number;
@@ -43,11 +43,11 @@ public class Account {
         this.number = number;
     }
 
-    public double getInitialAmmount() {
+    public Double getInitialAmmount() {
         return initialAmmount;
     }
 
-    public void setInitialAmmount(double initialAmmount) {
+    public void setInitialAmmount(Double initialAmmount) {
         this.initialAmmount = initialAmmount;
     }
 

@@ -7,7 +7,7 @@ public class Operations {
 
     List<Account> accounts = new ArrayList<>();
 
-    public void Add(String name, String lastName, double initialAmount, String currency) {
+    public void Add(String name, String lastName, Double initialAmount, String currency) {
 
         Integer number = accounts.size() + 1;
         Account account = new Account(name, lastName, number, initialAmount, currency);

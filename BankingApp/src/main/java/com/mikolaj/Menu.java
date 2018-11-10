@@ -1,6 +1,5 @@
 package com.mikolaj;
 
-import java.net.Inet4Address;
 import java.util.Scanner;
 
 public class Menu {
@@ -32,27 +31,24 @@ public class Menu {
 
             switch (option) {
                 case 'A':
-                    Scanner sc1 = new Scanner(System.in);
                     System.out.println("----------------------");
                     System.out.println("Please enter your name: ");
-                    String name = sc1.nextLine();
+                    String name = readStringFromUser();
                     System.out.println("Please enter your last name: ");
-                    String lastName = sc1.nextLine();
-                    System.out.println("Please enter your initial amount: ");
-                    double initialAmount = sc1.nextDouble();
+                    String lastName = readStringFromUser();
                     System.out.println("Please enter currency: ");
-                    Scanner sc2 = new Scanner(System.in);
-                    String currency = sc2.nextLine().toUpperCase();
+                    String currency = readStringFromUser().toUpperCase();
+                    System.out.println("Please enter your initial amount: ");
+                    Double initialAmount = readDoubleFromUser();
                     op.Add(name, lastName, initialAmount, currency);
                     Integer number = op.accounts.size();
                     System.out.println("Your account number is: " + number);
                     break;
 
                 case 'B':
-                    Scanner sc3 = new Scanner(System.in);
                     System.out.println("----------------------");
                     System.out.println("Please enter your account number: ");
-                    Integer number1 = sc3.nextInt();
+                    Integer number1 = readIntegerFromUser();
                     op.showAccountByNumber(number1);
                     break;
 
@@ -66,12 +62,11 @@ public class Menu {
                 case 'D':
                     System.out.println("---------------------");
                     System.out.println("Please enter an account number which you want to make transaction from:");
-                    Scanner sc4 = new Scanner(System.in);
-                    Integer acNumber1 = sc4.nextInt();
+                    Integer acNumber1 = readIntegerFromUser();
                     System.out.println("Please enter an account number which you want to make transaction to:");
-                    Integer acNumber2 = sc4.nextInt();
+                    Integer acNumber2 = readIntegerFromUser();
                     System.out.println("Please enter an ammount:");
-                    Double ammount = sc4.nextDouble();
+                    Double ammount = readDoubleFromUser();
                     op.makeTransaction(acNumber1, acNumber2, ammount);
                     System.out.println("---------------------");
                     System.out.println("Transaction has been done");
@@ -92,5 +87,62 @@ public class Menu {
             }
         } while (option != 'F');
         System.out.println("Bye bye!");
+    }
+
+    public static Double readDoubleFromUser() {
+
+        Double input = null;
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+                input = new Double(scanner.nextLine());
+                if (input < 0) {
+                    System.out.print("Something went wrong, please try again!");
+                } else {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.print("Something went wrong, please try again!");
+            }
+        }
+        return input;
+    }
+
+    public static Integer readIntegerFromUser() {
+
+        Scanner scanner = new Scanner(System.in);
+        Integer input = null;
+
+        while (true) {
+            try {
+                input = new Integer(scanner.nextLine());
+                if (input <= 0) System.out.print("Somethig went wrong, please try again!");
+                else break;
+            } catch (Exception e) {
+                System.out.print("Somethig went wrong, please try again!");
+            }
+        }
+        return input;
+    }
+
+    public static String readStringFromUser() {
+
+        String input = null;
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            try {
+                input = new String(scanner.nextLine());
+                if (input.isEmpty()) {
+                    System.out.println("Something went wrong, please try again!");
+                } else {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.print("Something went wrong, please try again!");
+            }
+        }
+        return input;
     }
 }
