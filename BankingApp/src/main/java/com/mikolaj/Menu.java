@@ -39,7 +39,7 @@ public class Menu {
                     System.out.println("Please enter your last name: ");
                     String lastName = readStringFromUser();
                     System.out.println("Please enter currency (PLN, USD, EUR): ");
-                    String currency = readCurrencyFroUser();
+                    String currency = readCurrencyFroUser().toUpperCase();
                     System.out.println("Please enter your initial amount: ");
                     Double initialAmount = readDoubleFromUser();
                     op.Add(name, lastName, initialAmount, currency);
@@ -67,16 +67,21 @@ public class Menu {
                     Integer acNumber1 = readIntegerFromUser();
                     System.out.println("Please enter an account number which you want to make transaction to:");
                     Integer acNumber2 = readIntegerFromUser();
-                    System.out.println("Please enter an ammount:");
+                    System.out.println("Please enter an amount:");
                     Double ammount = readDoubleFromUser();
                     op.makeTransaction(acNumber1, acNumber2, ammount);
-                    System.out.println("---------------------");
-                    System.out.println("Transaction has been done");
                     System.out.println("---------------------");
                     break;
 
                 case 'E':
-                    showMenu();
+                    System.out.println("What do you want to do?");
+                    System.out.println("=========================");
+                    System.out.println("A. Add account");
+                    System.out.println("B. Show account");
+                    System.out.println("C. Show all accounts");
+                    System.out.println("D. Make a transaction");
+                    System.out.println("E. Back to main menu");
+                    System.out.println("F. Exit");
                     break;
 
                 case 'F':
@@ -122,7 +127,7 @@ public class Menu {
                 if (input <= 0) System.out.print("Somethig went wrong, please try again!");
                 else break;
             } catch (Exception e) {
-                System.out.print("Somethig went wrong, please try again!");
+                System.out.println("Please enter a correct number:");
             }
         }
         return input;
@@ -142,7 +147,7 @@ public class Menu {
                     break;
                 }
             } catch (Exception e) {
-                System.out.print("Something went wrong, please try again!");
+                System.out.println("Something went wrong, please try again!");
             }
         }
         return input;
