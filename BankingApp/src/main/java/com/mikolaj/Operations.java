@@ -18,7 +18,13 @@ public class Operations {
     }
 
     public void showAll() {
-        accounts.forEach(System.out::println);
+        for(Account account : accounts) {
+            System.out.println("\n");
+            System.out.println("Account number: " + account.getNumber());
+            System.out.println("Name: " + account.getName());
+            System.out.println("Last name: " + account.getLastName());
+            System.out.println("Current balance: " + account.getInitialAmmount() + " " + account.getCurrency());
+        }
     }
 
     public void showAccountByNumber(Integer number) {
@@ -26,10 +32,14 @@ public class Operations {
         for (Account account : accounts) {
 
             if (account.getNumber().equals(number)) {
-                System.out.println("---------------------");
+                System.out.println("---------------------------------------------------------------------------------------");
                 System.out.println("Below you can see the details of your account: ");
-                System.out.println("---------------------");
-                System.out.println(account);
+                System.out.println("---------------------------------------------------------------------------------------");
+                System.out.println("\n");
+                System.out.println("Account number: " + account.getNumber());
+                System.out.println("Name: " + account.getName());
+                System.out.println("Last name: " + account.getLastName());
+                System.out.println("Current balance: " + account.getInitialAmmount() + " " + account.getCurrency());
             }
             if (number <= 0 || number > accounts.size()) {
                 System.out.println("Sorry, wrong account number!");
@@ -41,6 +51,9 @@ public class Operations {
 
         if (idNumbers.contains(account1) && idNumbers.contains(account2)) {
 
+            String curr1 = accounts.get(account1-1).getCurrency();
+            String curr2 = accounts.get(account2-1).getCurrency();
+
             for (Account account : accounts) {
 
                 if (account.getNumber().equals(account1)) {
@@ -48,10 +61,19 @@ public class Operations {
                     account.setInitialAmmount(value1);
                 }
                 if (account.getNumber().equals(account2)) {
-                    double value2 = account.getInitialAmmount() + ammount;
-                    account.setInitialAmmount(value2);
+
+                    if (curr1.equals("PLN") && curr2.equals("USD")) {
+                        double value2 = account.getInitialAmmount() + (ammount / 3.75);
+                        account.setInitialAmmount(value2);
+                    } else  if (curr1.equals("USD") && curr2.equals("PLN")) {
+                        double value2 = account.getInitialAmmount() + (ammount * 3.75);
+                        account.setInitialAmmount(value2);
+                    } else {
+                        double value2 = account.getInitialAmmount() + ammount;
+                        account.setInitialAmmount(value2);
+                    }  System.out.println("Transaction successful!");
                 }
-            } System.out.println("Transaction successful!");
+            }
         } else {
             System.out.println("Something went wrong, please try again!");
         }
