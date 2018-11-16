@@ -8,32 +8,32 @@ public class AccountBuilder {
     private Double initialAmmount;
     private String currency;
 
-    public AccountBuilder withName(String name){
+    public AccountBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public AccountBuilder withLastName(String lastName){
+    public AccountBuilder withLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    public AccountBuilder withNumber(Integer number){
+    public AccountBuilder withNumber(Integer number) {
         this.number = number;
         return this;
     }
 
-    public AccountBuilder withInitialAmmount(Double initialAmmount){
+    public AccountBuilder withInitialAmmount(Double initialAmmount) {
         this.initialAmmount = initialAmmount;
         return this;
     }
 
-    public AccountBuilder withCurrency(String currency){
+    public AccountBuilder withCurrency(String currency) {
         this.currency = currency;
         return this;
     }
 
-    public Account makeAnAccount(){
+    public Account makeAnAccount() {
         return new Account(name, lastName, number, initialAmmount, currency);
     }
 

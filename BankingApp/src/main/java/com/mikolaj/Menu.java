@@ -1,6 +1,5 @@
 package com.mikolaj;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class Menu {
 
         do {
             System.out.println("=======================================================================================");
-            System.out.println("Enter an option (A,B,C,D,E or F)");
+            System.out.println("Enter an option (A,B,C,D,E,F or G)");
             System.out.println("=======================================================================================");
             option = sc.next().toUpperCase().charAt(0);
 
@@ -85,7 +84,6 @@ public class Menu {
                     System.out.println("---------------------------------------------------------------------------------------");
                     op.openFile();
                     System.out.println("Accounts have been loaded!");
-                    System.out.println("---------------------------------------------------------------------------------------");
 
 
                 case 'F':

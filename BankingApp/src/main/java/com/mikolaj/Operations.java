@@ -3,7 +3,6 @@ package com.mikolaj;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 public class Operations {
@@ -48,9 +47,7 @@ public class Operations {
                 System.out.println("Last name: " + account.getLastName());
                 System.out.println("Current balance: " + account.getInitialAmmount() + " " + account.getCurrency());
             }
-            if (number <= 0 || number > accounts.size()) {
-                System.out.println("Sorry, wrong account number!");
-            } else {
+            if (number <= 0 || number > accounts.size() + 1) {
                 System.out.println("Sorry, wrong account number!");
             }
         }
@@ -92,7 +89,9 @@ public class Operations {
     public void openFile() throws NumberFormatException {
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader("AccountsExaples.csv"));
+            accounts.clear();
+            idNumbers.clear();
+            reader = new BufferedReader(new FileReader("/home/mikolaj/Projekty/exercises-basics/BankingApp/AccountsExamples.csv"));
             List<Account> ac = reader.lines()
                     .skip(1)
                     .map(s -> s.split(";"))
@@ -104,10 +103,13 @@ public class Operations {
                             .withCurrency(array[4])
                             .makeAnAccount())
                     .collect(Collectors.toList());
-            accounts.clear();
             accounts.addAll(ac);
-        } catch (FileNotFoundException e){
-                throw new NumberFormatException();
+            for (int i = 0; i < accounts.size(); i++) {
+                idNumbers.add(i);
             }
+
+        } catch (FileNotFoundException e) {
+            throw new NumberFormatException();
+        }
     }
 }
