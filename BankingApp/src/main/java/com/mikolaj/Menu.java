@@ -1,12 +1,14 @@
 package com.mikolaj;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 
-    public static void showMenu() {
+    public static void showMenu() throws IOException {
 
         Operations op = new Operations();
 
@@ -14,6 +16,7 @@ public class Menu {
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("\n");
         System.out.println("Welcome dear user!");
         System.out.println("What do you want to do?");
         System.out.println("=======================================================================================");
@@ -21,8 +24,9 @@ public class Menu {
         System.out.println("B. Show account");
         System.out.println("C. Show all accounts");
         System.out.println("D. Make a transaction");
-        System.out.println("E. Back to main menu");
-        System.out.println("F. Exit");
+        System.out.println("E. Read file with examples of accounts");
+        System.out.println("F. Back to main menu");
+        System.out.println("G. Exit");
 
         do {
             System.out.println("=======================================================================================");
@@ -78,26 +82,38 @@ public class Menu {
                     break;
 
                 case 'E':
+                    System.out.println("---------------------------------------------------------------------------------------");
+                    op.openFile();
+                    System.out.println("Accounts have been loaded!");
+                    System.out.println("---------------------------------------------------------------------------------------");
+
+
+                case 'F':
+                    System.out.println("---------------------------------------------------------------------------------------");
                     System.out.println("What do you want to do?");
                     System.out.println("=======================================================================================");
                     System.out.println("A. Add account");
                     System.out.println("B. Show account");
                     System.out.println("C. Show all accounts");
                     System.out.println("D. Make a transaction");
-                    System.out.println("E. Back to main menu");
-                    System.out.println("F. Exit");
+                    System.out.println("E. Read file with examples of accounts");
+                    System.out.println("F. Back to main menu");
+                    System.out.println("G. Exit");
                     break;
 
-                case 'F':
+                case 'G':
+                    System.out.println("\n");
                     System.out.println("***************************************************************************************");
+                    System.out.println("\n");
                     break;
 
                 default:
                     System.out.println("Invalid operation, please try again! ");
 
             }
-        } while (option != 'F');
+        } while (option != 'G');
         System.out.println("Bye bye!");
+        System.out.println("\n");
     }
 
     public static Double readDoubleFromUser() {

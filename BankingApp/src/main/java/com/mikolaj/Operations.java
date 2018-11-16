@@ -1,7 +1,10 @@
 package com.mikolaj;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 public class Operations {
 
@@ -18,12 +21,16 @@ public class Operations {
     }
 
     public void showAll() {
-        for(Account account : accounts) {
-            System.out.println("\n");
-            System.out.println("Account number: " + account.getNumber());
-            System.out.println("Name: " + account.getName());
-            System.out.println("Last name: " + account.getLastName());
-            System.out.println("Current balance: " + account.getInitialAmmount() + " " + account.getCurrency());
+        for (Account account : accounts) {
+            if (accounts.size() != 0) {
+                System.out.println("\n");
+                System.out.println("Account number: " + account.getNumber());
+                System.out.println("Name: " + account.getName());
+                System.out.println("Last name: " + account.getLastName());
+                System.out.println("Current balance: " + account.getInitialAmmount() + " " + account.getCurrency());
+            } else {
+                System.out.println("Sorry there is no accounts created");
+            }
         }
     }
 
@@ -43,6 +50,8 @@ public class Operations {
             }
             if (number <= 0 || number > accounts.size()) {
                 System.out.println("Sorry, wrong account number!");
+            } else {
+                System.out.println("Sorry, wrong account number!");
             }
         }
     }
@@ -51,8 +60,8 @@ public class Operations {
 
         if (idNumbers.contains(account1) && idNumbers.contains(account2)) {
 
-            String curr1 = accounts.get(account1-1).getCurrency();
-            String curr2 = accounts.get(account2-1).getCurrency();
+            String curr1 = accounts.get(account1 - 1).getCurrency();
+            String curr2 = accounts.get(account2 - 1).getCurrency();
 
             for (Account account : accounts) {
 
@@ -65,17 +74,40 @@ public class Operations {
                     if (curr1.equals("PLN") && curr2.equals("USD")) {
                         double value2 = account.getInitialAmmount() + (ammount / 3.75);
                         account.setInitialAmmount(value2);
-                    } else  if (curr1.equals("USD") && curr2.equals("PLN")) {
+                    } else if (curr1.equals("USD") && curr2.equals("PLN")) {
                         double value2 = account.getInitialAmmount() + (ammount * 3.75);
                         account.setInitialAmmount(value2);
                     } else {
                         double value2 = account.getInitialAmmount() + ammount;
                         account.setInitialAmmount(value2);
-                    }  System.out.println("Transaction successful!");
+                    }
+                    System.out.println("Transaction successful!");
                 }
             }
         } else {
             System.out.println("Something went wrong, please try again!");
         }
+    }
+
+    public void openFile() throws NumberFormatException {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("AccountsExaples.csv"));
+            List<Account> ac = reader.lines()
+                    .skip(1)
+                    .map(s -> s.split(";"))
+                    .map(array -> new AccountBuilder()
+                            .withName(array[0])
+                            .withLastName(array[1])
+                            .withNumber(Integer.parseInt(array[2]))
+                            .withInitialAmmount(Double.parseDouble(array[3]))
+                            .withCurrency(array[4])
+                            .makeAnAccount())
+                    .collect(Collectors.toList());
+            accounts.clear();
+            accounts.addAll(ac);
+        } catch (FileNotFoundException e){
+                throw new NumberFormatException();
+            }
     }
 }
