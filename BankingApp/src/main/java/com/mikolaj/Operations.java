@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
+
 public class Operations {
 
-    List<Account> accounts = new ArrayList<>();
-    List<Integer> idNumbers = new ArrayList<>();
+    private final Logger log = Logger.getLogger(getClass());
+
+    protected List<Account> accounts = new ArrayList<>();
+    private List<Integer> idNumbers = new ArrayList<>();
 
     public void Add(String name, String lastName, Double initialAmount, String currency) {
 
@@ -16,6 +20,7 @@ public class Operations {
         Account account = new Account(name, lastName, number, initialAmount, currency);
         accounts.add(account);
         idNumbers.add(number);
+        log.info("New account hac been added.");
 
     }
 
@@ -26,7 +31,7 @@ public class Operations {
                 System.out.println("Account number: " + account.getNumber());
                 System.out.println("Name: " + account.getName());
                 System.out.println("Last name: " + account.getLastName());
-                System.out.println("Current balance: " + account.getInitialAmmount() + " " + account.getCurrency());
+                System.out.println("Current balance: " + String.format("%.2f", account.getInitialAmmount()) + " " + account.getCurrency());
             } else {
                 System.out.println("Sorry there is no accounts created");
             }
@@ -45,7 +50,7 @@ public class Operations {
                 System.out.println("Account number: " + account.getNumber());
                 System.out.println("Name: " + account.getName());
                 System.out.println("Last name: " + account.getLastName());
-                System.out.println("Current balance: " + account.getInitialAmmount() + " " + account.getCurrency());
+                System.out.println("Current balance: " + String.format("%.2f", account.getInitialAmmount()) + " " + account.getCurrency());
             }
             if (number <= 0 || number > accounts.size() + 1) {
                 System.out.println("Sorry, wrong account number!");
@@ -79,10 +84,12 @@ public class Operations {
                         account.setInitialAmmount(value2);
                     }
                     System.out.println("Transaction successful!");
+                    log.info("Transaction from " + account1 + " to account " + account2 + " has been done. Value = " + ammount + " " + curr1);
                 }
             }
         } else {
             System.out.println("Something went wrong, please try again!");
+            log.warn("Transaction not successful.");
         }
     }
 
@@ -104,11 +111,13 @@ public class Operations {
                             .makeAnAccount())
                     .collect(Collectors.toList());
             accounts.addAll(ac);
+            log.info("File has been loaded.");
             for (int i = 0; i < accounts.size(); i++) {
                 idNumbers.add(i);
             }
 
         } catch (FileNotFoundException e) {
+            log.warn("File not found exception!");
             throw new NumberFormatException();
         }
     }
