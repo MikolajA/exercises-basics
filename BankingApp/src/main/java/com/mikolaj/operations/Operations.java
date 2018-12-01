@@ -1,15 +1,19 @@
-package com.mikolaj;
+package com.mikolaj.operations;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.log4j.Logger;
+import com.mikolaj.model.Account;
+import com.mikolaj.model.AccountBuilder;
 
 public class Operations {
 
-    private final Logger log = Logger.getLogger(getClass());
+    private Logger log = LoggerFactory.getLogger(Operations.class);
 
     protected List<Account> accounts = new ArrayList<>();
     private List<Integer> idNumbers = new ArrayList<>();

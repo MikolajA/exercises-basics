@@ -1,4 +1,4 @@
-package com.mikolaj;
+package com.mikolaj.model;
 
 public class Account {
 

@@ -1,5 +1,7 @@
 package com.mikolaj;
 
+import com.mikolaj.operations.Menu;
+
 import java.io.IOException;
 
 public class App {

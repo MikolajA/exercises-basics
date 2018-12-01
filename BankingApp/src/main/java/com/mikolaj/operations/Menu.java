@@ -1,4 +1,4 @@
-package com.mikolaj;
+package com.mikolaj.operations;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,7 +84,8 @@ public class Menu {
                     System.out.println("---------------------------------------------------------------------------------------");
                     op.openFile();
                     System.out.println("Accounts have been loaded!");
-
+                    System.out.println("---------------------------------------------------------------------------------------");
+                    break;
 
                 case 'F':
                     System.out.println("---------------------------------------------------------------------------------------");
